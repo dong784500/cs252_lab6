@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs')
 const chegg_account = require('../config/chegg_account') 
+const fetch = require('./fetch')
 const typeOption = {
     delay: 20
 };
@@ -9,6 +10,7 @@ const navOption = {
     waitUntil: ['domcontentloaded', 'networkidle0']
 };
 const urls = {
+    // login: 'https://www.chegg.com/auth?action=login&redirect=https%3A%2F%2Fwww.chegg.com%2Fsearch%2Fmath%2Fstudy'
     login: 'https://www.chegg.com/auth?action=login'
 };
 
@@ -18,7 +20,7 @@ function initBrowser () {
         puppeteer.launch({
             headless: false,
             slowMo: 100,
-            userDataDir: '~/Library/Caches/Google/Chrome/Default'
+            //userDataDir: '~/Library/Caches/Google/Chrome/Default'
         })
         .then(resolve)
         .catch(reject)        
@@ -48,9 +50,10 @@ async function signin(browser) {
     await page.$eval('.login-button', el => el.click());
     await page.waitForNavigation(navOption,navOption)
     await page.screenshot({path: 'login_success.png'});
-    const cookie = await page.cookies()
-    fs.writeFile('./cookie/data.json', JSON.stringify(cookie), (err) => {
+    const cookies = await page.cookies()
+    fs.writeFile('./cookie/data.json', JSON.stringify({ cookies }), (err) => {
         console.log('COOKIE SAVED')
+        fetch()
     })
 }
 
