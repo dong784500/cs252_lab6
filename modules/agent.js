@@ -21,7 +21,7 @@ const urls = {
 function initBrowser () {
     return new Promise((resolve, reject) => {
         puppeteer.launch({
-            headless: true,
+            headless: false,
             slowMo: 100,
             args: ['--no-sandbox', '--disable-setuid-sandbox']
             //userDataDir: '~/Library/Caches/Google/Chrome/Default'
