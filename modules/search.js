@@ -2,7 +2,7 @@ const request = require('./request')
 
 const fs = require('fs')
 
-function search(page, keywords) {
+function search(page, keywords, cb) {
 
     const search_data = { 
         "chgsec": "searchsection", 
@@ -19,16 +19,16 @@ function search(page, keywords) {
         url,
         method: 'get'
     }
-    console.log(opt)
 
     request(opt)
     .then(res => {
-        fs.writeFile('./data/search.json', JSON.stringify(res.data), (err) => {
-            console.log('SEARCH FINISHED')
-        })
+        // fs.writeFile('./data/search.json', JSON.stringify(res.data), (err) => {
+        //     console.log('SEARCH FINISHED')
+        // })
+        cb(null, res.data)
     })
     .catch(e => {
-        console.log(e.message)
+        cb(e)
     })
 
 }

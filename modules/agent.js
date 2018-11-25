@@ -10,7 +10,7 @@ const typeOption = {
 
 const navOption = {
     timeout: 0,
-    waitUntil: ['domcontentloaded', 'networkidle0']
+    waitUntil: ['domcontentloaded', 'networkidle2']
 };
 const urls = {
     // login: 'https://www.chegg.com/auth?action=login&redirect=https%3A%2F%2Fwww.chegg.com%2Fsearch%2Fmath%2Fstudy'
@@ -38,8 +38,8 @@ async function signin(browser) {
     await page.setRequestInterception(true);
     page.on('request', request => {
         if (request.resourceType() === 'image') {
-            // request.abort();
-            request.continue();
+            request.abort();
+            // request.continue();
         } else {
             request.continue();
         }
@@ -63,13 +63,20 @@ async function signin(browser) {
     })
 }
 
-initBrowser()
-.then(browser => {
-    signin(browser)
-})
-.catch(e => {
-    console.log(e)
-})
+
+function main () {
+    initBrowser()
+    .then(browser => {
+        signin(browser)
+    })
+    .catch(e => {
+        console.log(e)
+    })    
+}
+
+main()
+
+module.exports = main;
 
 
 
