@@ -47,6 +47,7 @@ async function signin(browser) {
 
     // go to sigin page
     await page.goto(urls.login, navOption);
+    await page.screenshot({path: 'login_page__load_success.png'});
     console.log('LOAD LOGIN PAGE')
     // type in register data and sign in
     await page.type('#emailForSignIn', chegg_account.username, typeOption)
