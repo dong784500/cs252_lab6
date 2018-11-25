@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs')
 const chegg_account = require('../config/chegg_account') 
-const fetch = require('./fetch')
+// const fetch = require('./fetch')
 const typeOption = {
     delay: 20
 };
@@ -53,7 +53,7 @@ async function signin(browser) {
     const cookies = await page.cookies()
     fs.writeFile('./cookie/data.json', JSON.stringify({ cookies }), (err) => {
         console.log('COOKIE SAVED')
-        fetch()
+        // fetch()
     })
 }
 
