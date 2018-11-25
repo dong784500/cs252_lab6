@@ -23,6 +23,7 @@ function initBrowser () {
         puppeteer.launch({
             headless: false,
             slowMo: 100,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
             //userDataDir: '~/Library/Caches/Google/Chrome/Default'
         })
         .then(resolve)
