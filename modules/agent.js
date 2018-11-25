@@ -38,8 +38,8 @@ async function signin(browser) {
     await page.setRequestInterception(true);
     page.on('request', request => {
         if (request.resourceType() === 'image') {
-            request.abort();
-            // request.continue();
+            // request.abort();
+            request.continue();
         } else {
             request.continue();
         }
