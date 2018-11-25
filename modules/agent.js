@@ -1,10 +1,13 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs')
 const chegg_account = require('../config/chegg_account') 
-// const fetch = require('./fetch')
+
+const getToken = require('./getToken')
+
 const typeOption = {
     delay: 20
 };
+
 const navOption = {
     timeout: 0,
     waitUntil: ['domcontentloaded', 'networkidle0']
@@ -51,9 +54,10 @@ async function signin(browser) {
     await page.waitForNavigation(navOption,navOption)
     await page.screenshot({path: 'login_success.png'});
     const cookies = await page.cookies()
-    fs.writeFile('./cookie/data.json', JSON.stringify({ cookies }), (err) => {
-        console.log('COOKIE SAVED')
-        // fetch()
+    await browser.close();
+
+    fs.writeFile('./data/cookie.json', JSON.stringify({ cookies }), (err) => {
+        getToken()
     })
 }
 

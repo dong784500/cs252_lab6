@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const controller = require('../controller/api')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/search', api.search);
 
 module.exports = router;

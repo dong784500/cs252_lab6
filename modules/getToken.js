@@ -12,14 +12,10 @@ function getToken() {
         console.log(res.data)
         const token = res.data.token
         fs.writeFile('./data/token.json', JSON.stringify({token}), err => {
-            console.log('TOKEN REFRESHED')
         })
     })
     .catch(e => {
-        console.log(e.message)
     })
 }
-
-getToken()
 
 module.exports = getToken
