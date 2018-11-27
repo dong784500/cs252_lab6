@@ -33,4 +33,6 @@ function search(page, keywords, cb) {
 
 }
 
+//search(1, ['math'], () => {})
+
 module.exports = search
