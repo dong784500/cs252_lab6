@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var apiRouter = require('./routes/api');
 const task = require('./modules/task')
+const initDatabase = require('./config/database')
 
 var app = express();
 
@@ -31,8 +32,7 @@ app.use(function (err, req, res, next) {
         error: err.message
     })
 });
-
-task()
-
+initDatabase()
+// task()
 
 module.exports = app;

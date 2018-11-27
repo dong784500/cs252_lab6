@@ -7,7 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('cs252-lab6:server');
 var http = require('http');
-
 /**
  * Get port from environment and store in Express.
  */
@@ -20,6 +19,26 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+const io = require('socket.io').listen(server)
+
+io.on('connection', (socket) => { 
+  const ip = socket.handshake.address
+  const time = socket.handshake.time
+
+  socket.on('EVENT', (data) => {
+    const payload = {ip: socket.handshake.address, time: socket.handshake.time,...data}
+    io.sockets.emit('INFO', payload)
+  })
+
+  io.sockets.emit('INFO', {
+    action: 'CONNECT',
+    ip, 
+    time
+  })
+
+}) 
+
+
 
 /**
  * Listen on provided port, on all network interfaces.
