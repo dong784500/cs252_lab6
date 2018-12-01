@@ -2,6 +2,10 @@ const puppeteer = require('puppeteer');
 const fs = require('fs')
 const chegg_account = require('../config/chegg_account') 
 
+const path = require('path')
+
+const cookie_data_path = path.join(__dirname, './data/cookie.json')
+
 const getToken = require('./getToken')
 
 const typeOption = {
@@ -37,8 +41,8 @@ async function signin(browser) {
     await page.setRequestInterception(true);
     page.on('request', request => {
         if (request.resourceType() === 'image') {
-            // request.abort();
-            request.continue();
+            request.abort();
+            // request.continue();
         } else {
             request.continue();
         }
@@ -57,7 +61,7 @@ async function signin(browser) {
     const cookies = await page.cookies()
     await browser.close();
 
-    fs.writeFile('./data/cookie.json', JSON.stringify({ cookies }), (err) => {
+    fs.writeFile(cookie_data_path, JSON.stringify({ cookies }), (err) => {
         getToken()
     })
 }
