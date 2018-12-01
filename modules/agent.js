@@ -14,7 +14,7 @@ const typeOption = {
 
 const navOption = {
     timeout: 0,
-    waitUntil: ['domcontentloaded', 'networkidle0']
+    waitUntil: ['domcontentloaded', 'networkidle2']
 };
 const urls = {
     // login: 'https://www.chegg.com/auth?action=login&redirect=https%3A%2F%2Fwww.chegg.com%2Fsearch%2Fmath%2Fstudy'
