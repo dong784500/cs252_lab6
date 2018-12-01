@@ -10,7 +10,7 @@ const typeOption = {
 
 const navOption = {
     timeout: 0,
-    waitUntil: ['domcontentloaded', 'networkidle2']
+    waitUntil: ['domcontentloaded', 'networkidle0']
 };
 const urls = {
     // login: 'https://www.chegg.com/auth?action=login&redirect=https%3A%2F%2Fwww.chegg.com%2Fsearch%2Fmath%2Fstudy'
@@ -33,7 +33,6 @@ function initBrowser () {
 
 
 async function signin(browser) {
-    console.log(browser)
     const page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', request => {
