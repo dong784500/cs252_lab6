@@ -33,6 +33,7 @@ app.use(function (err, req, res, next) {
     })
 });
 initDatabase()
-//task()
+
+task()
 
 module.exports = app;
