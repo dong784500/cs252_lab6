@@ -5,9 +5,6 @@ const {
     emailExists,
 } = require('./base')
 
-/*********************
- * Private functions *
- *********************/
 
 
 
@@ -72,9 +69,6 @@ const registerUser = async req => {
 }
 
 
-/********************
- * Public functions *
- ********************/
 
  module.exports  ={
      login: async (req, res) => {
