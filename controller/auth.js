@@ -9,7 +9,7 @@ const {
 
 
 const setUserInfo = item => {
-    const { username, email, role } = item
+    const { username, email, role } = item  
     const user = {
         username, email, role
     }

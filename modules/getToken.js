@@ -7,6 +7,7 @@ const path = require('path')
 const token_data_path = path.join(__dirname, './data/token.json')
 
 function getToken() {
+    
     const opt = {
         url: 'https://www.chegg.com/_ajax/global/init',
         method: 'get'
